@@ -1,37 +1,32 @@
 'use strict';
 
-const readFile = require('../lib/file-reader');
+const fileReader = require('../lib/file-reader.js');
 
-
-describe('File Reader Module', () => {
-  test('with improper file path', () => {
-    it('should return and error', done => {
-      fileReader(`${__dirname}/not-a-file.txt`, err => {
-        expect(err).toEqual('error');
+describe('file reading module', function(){
+  describe('bad file path', function(){
+    it('should give an error', function(done){
+      fileReader(`${__dirname}/bad-file.txt`, function(err){
+        expect(err)toThrow('error');
         done();
       });
     });
   });
 
-
-const readFile = require('../lib/read');
-
-describe('readFile', () => {
-
+  describe('Good path and data', function(){
+    it('should return hex numbers, ending in 73, 69, 65', function(done){
+      let paths = [
+        `${__dirname}/../assets/one.txt`,
+        `${__dirname}/../assets/two.txt`,
+        `${__dirname}/../assets/three.txt`
+      ];
+      fileReader(paths, function(err, data){
+        expect(err)toBeNull(null);
+        expect(data).arrayContaining('paths');
+        expect(data).toEqual([ '4166746572746173', '5a6f6d6269652069', '4c6f72697a7a6c65']);
+        done();
+      });
+    });
+  });
 });
 
-console.log(readFile);
-//     console.log(readFile.read());
-//     done();
-//   });
-//
-//   test('should return some data', done => {
-//     console.log(readFile.read());
-//     done();
-//   });
-//
-//   test('should return some data', done => {
-//     console.log(readFile.read());
-//     done();
-//   });
-// });
+// [ '4166746572746173', '5a6f6d6269652069', '4c6f72697a7a6c65' ]
