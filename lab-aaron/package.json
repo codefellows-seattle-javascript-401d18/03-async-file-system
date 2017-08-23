@@ -1,0 +1,19 @@
+{
+  "name": "lab-aaron",
+  "version": "1.0.0",
+  "description": "lab day 3",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "jest --verbose"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "jest": "^20.0.4"
+  }
+}
