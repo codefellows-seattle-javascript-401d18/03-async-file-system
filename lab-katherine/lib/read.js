@@ -1,28 +1,25 @@
 'use strict'
 
+let x = module.exports = {}
 const fs = require('fs')
 
-let x = module.exports = {}
-
-x.readThing = () =>{
+x.readThing = (callback) =>{
   let first, second, third;
-  fs.readFile(`${__dirname}/../assets/three.txt`, 'utf-8', function(err, data) {
-    if (err) { throw err }
-    console.log('one.txt', data.toString('utf-8', 0, 8))
-    first = data.toString('utf-8', 0, 8)
-    fs.readFile(`${__dirname}/../assets/one.txt`, 'utf-8', function(err, data) {
-      if (err) { throw err }
-      console.log('two.txt', data.toString('utf-8', 0, 8))
-      second = data.toString('utf-8', 0, 8)
-      fs.readFile(`${__dirname}/../assets/two.txt`, 'utf-8', function(err, data) {
-        if (err) { throw err }
-        console.log('three.txt', data.toString('utf-8', 0, 8))
-        third = data.toString('utf-8', 0, 8)
 
-        return console.log('this is the return', first, second, third);
+  fs.readFile(`${__dirname}/../assets/one.txt`, (err, data) => {
+    if (err) console.error(err);
+    first = data.toString('hex', 0, 8)
+
+    fs.readFile(`${__dirname}/../assets/two.txt`, (err, data) => {
+      if (err) console.error(err);
+      second = data.toString('hex', 0, 8);
+
+      fs.readFile(`${__dirname}/../assets/three.txt`, (err, data) => {
+        if (err) console.error(err);
+        third = data.toString('hex', 0, 8);
+
+        callback({first, second, third})
       })
     })
   })
 }
-
-x.readThing();
