@@ -12,6 +12,15 @@ describe('File Reader Module', () => {
       });
     });
   });
+
+
+const readFile = require('../lib/read');
+
+describe('readFile', () => {
+
+});
+
+console.log(readFile);
 //     console.log(readFile.read());
 //     done();
 //   });

@@ -1,11 +1,32 @@
-'use strict';
+'use-strict';
+
+
+module.exports = exports = {};
 
 const fs = require('fs');
 
-const fileReader = module.exports = (file, callback) => {
-  fs.readFile(file, (err, data) => {
-    if (err) return callback(err);
+console.log(`current dir: ${__dirname}`);
 
-    return callback(null, data.toString('hex', 0, 8));
+exports.read = () => {
+  let first, second;
+
+  fs.readFile(`${__dirname}/../assets/two.txt`, (err, data) => {
+    if(err) console.error(err);
+    console.log('two.txt', data.toString('utf-8', 0, 8));
+    first = data.toString('utf-8', 0, 18);
   });
+
+  fs.readFile(`${__dirname}/../assets/one.txt`, (err, data) => {
+    if(err) console.error(err);
+    console.log('one.txt', data.toString('utf-8', 0, 8));
+    second = data.toString('utf-8', 0, 18);
+  });
+
+  fs.readFile(`${__dirname}/../assets/three.txt`, (err, data) => {
+    if(err) console.error(err);
+    console.log('three.txt', data.toString('utf-8', 0, 8));
+    second = data.toString('utf-8', 0, 18);
+  });
+
+  return {first, second};
 };
