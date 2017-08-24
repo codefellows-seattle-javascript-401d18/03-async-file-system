@@ -30,4 +30,13 @@ describe('My FS module', function() {
       done();
     });
   });
+  test('should not recognize file path', done => {
+    let badPath;
+    fs.readFile(`${__dirname}/../assets/four.txt`, (err, data) => {
+      if(err) console.error(err);
+      badPath = data.toString('hex', 0, 8);
+    })
+    expect(badPath).toBeUndefined();
+    done();
+  })
 });
