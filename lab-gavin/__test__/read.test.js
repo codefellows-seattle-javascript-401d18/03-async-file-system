@@ -37,9 +37,14 @@ describe('My FS module', function() {
       done();
     });
   });
+  test('Should come back undefined', done =>{
+    let nope;
+    fs.readFile(`${__dirname}/../assets/nope.txt`, (err, data) => {
+      if(err) console.error(err);
+      nope = data.toString('hex', 0, 8);
+    });
+    expect(nope).toBeUndefined();
+    done();
 
-  // test('Should throw error when bad filepath', => {
-  //   expect(() => ?.toThrowError('Bad Filepath'))
-  // })
-
+  });
 });

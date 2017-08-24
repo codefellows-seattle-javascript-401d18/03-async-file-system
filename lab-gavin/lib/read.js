@@ -33,5 +33,3 @@ yolo.read = (callback) => {
   });
 
 };
-
-// yolo.read();
