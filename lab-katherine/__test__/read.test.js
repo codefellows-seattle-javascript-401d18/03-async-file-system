@@ -1,13 +1,33 @@
+'use-strict';
+const bark = require('../lib/read');
+const fs = require('fs');
 
-'use strict'
 
-let read = require('../lib/read')
+describe('My FS module', function() {
+  test('should return files in correct order', done => {
+    let first1, second2, third3;
 
-describe('read.js', function() {
-  describe('my fs module', () => {
-    test('should return some data', done => {
-      console.log(read.readThing())
-      done()
-    })
-  })
-})
+    fs.readFile(`${__dirname}/../assets/one.txt`, (err, data) => {
+      if (err) console.error(err);
+      first1 = data.toString('hex', 0, 8);
+    });
+
+    fs.readFile(`${__dirname}/../assets/two.txt`, (err, data) => {
+      if (err) console.error(err);
+      second2 = data.toString('hex', 0, 8);
+    });
+
+    fs.readFile(`${__dirname}/../assets/three.txt`, (err, data) => {
+      if (err) console.error(err);
+      third3 = data.toString('hex', 0, 8);
+    });
+
+    bark.readThing( (data) => {
+      let dataOG = [data.first, data.second, data.third];
+      let dataNew = [first1, second2, third3];
+      console.log(dataOG, dataNew);
+      expect(dataOG).toEqual(dataNew);
+      done();
+    });
+  });
+});
