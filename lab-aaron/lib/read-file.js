@@ -19,9 +19,8 @@ yoda.read = (callback) => {
         if(err) console.error(err);
         third = data.toString('hex', 0, 8);
 
-        // return console.log(first, second, third, 'This is the return');
+        callback({first, second, third});
       });
-      callback({first, second, third});
     });
   });
 };

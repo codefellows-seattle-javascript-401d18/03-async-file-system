@@ -19,14 +19,26 @@ describe('Should show first 8 hex values from txt files', function() {
     fs.readFile(`${__dirname}/../assets/three.txt`, (err, data) => {
       thirdy = data.toString('hex', 0, 8);
     });
+
     readIt.read( (data) => {
       let odata = [data.first, data.second, data.third];
       let ndata = [firsty, secondy, thirdy];
-      // console.log(data.first, data.second, data.third);
-      // console.log(firsty, secondy, thirdy);
-      // expect(data.first, data.second, data.third).toEqual(firsty, secondy, thirdy);
+      expect(odata).toEqual(ndata);
+      console.log(data.first, data.second, data.third);
+      console.log(firsty, secondy, thirdy);
+      expect([data.first, data.second, data.third]).toEqual([firsty, secondy, thirdy]);
 
       done();
     });
+  });
+  test('Should come back undefined', done =>{
+    let nope;
+    fs.readFile(`${__dirname}/../assets/nope.txt`, (err, data) => {
+      if(err) console.error(err);
+      nope = data.toString('hex', 0, 8);
+    });
+    expect(nope).toBeUndefined();
+    done();
+
   });
 });
