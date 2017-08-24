@@ -27,9 +27,13 @@ describe('My FS module', function() {
 
 
     bark.read( (data) => {
-      // console.log(data.first , data.second, data.third);
-      // console.log(first1, second2, third3);
-      expect(data.first + ' ' + data.second + ' ' + data.third).toEqual(first1 + ' ' + second2 + ' ' + third3);
+      // let odata = [data.first , data.second, data.third];
+      // let ndata = [second2, first1, third3];
+      // expect(odata).toEqual(ndata);
+
+      //**********Both methods work
+
+      expect([data.second, data.first, data.third]).toEqual([second2, first1, third3]);
       done();
     });
   });
