@@ -1,0 +1,28 @@
+{
+  "name": "02-tools-context",
+  "version": "1.0.0",
+  "description": "\"Configuring files for jest, eslint for use in apply and call functions\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest --verbose",
+    "lint": "eslint ../lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spwahle/02-tools-context.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Spwahle/02-tools-context/issues"
+  },
+  "homepage": "https://github.com/Spwahle/02-tools-context#readme",
+  "dependencies": {
+    "eslint": "^4.5.0",
+    "jest": "^20.0.4"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
+}
