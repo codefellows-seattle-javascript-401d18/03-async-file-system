@@ -1,2 +1,6 @@
-This app can take a text file and convert it to a hex value. It then pass the first 8 characters to check the call order to ensure that it is running the functions in the correct order.
-It can also validate that it has the correct pathway.
+Contained in the lib folder, the read.js file contains the function fs.readFile, which reads the three text files in numerical order.
+
+The done function used is a built in function from Jest. I have added a link to the documentation below.
+
+ https://facebook.github.io/jest/docs/asynchronous.html
+The documentation for done is found in the callbacks section of the doc.
