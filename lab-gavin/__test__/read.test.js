@@ -14,15 +14,12 @@ describe('My FS module', function() {
 
     fs.readFile(`${__dirname}/../assets/two.txt`, (err, data) => {
       if (err) console.error(err);
-
       second2 = data.toString('utf-8', 0, 8);
     });
 
     fs.readFile(`${__dirname}/../assets/three.txt`, (err, data) => {
       if (err) console.error(err);
-
       third3 = data.toString('utf-8', 0, 8);
-
     });
 
 
@@ -34,6 +31,7 @@ describe('My FS module', function() {
       //**********Both methods work
 
       expect([data.second, data.first, data.third]).toEqual([second2, first1, third3]);
+      console.log(data.first, data.second, data.third);
       done();
     });
   });
