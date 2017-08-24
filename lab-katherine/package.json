@@ -1,0 +1,34 @@
+{
+  "name": "day-03",
+  "version": "1.0.0",
+  "description": "![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 04: Parallel File Processing ===",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
+  },
+  "scripts": {
+    "test": "jest --verbose",
+    "lint": "eslint .",
+    "test:watch": "jest --watchAll",
+    "lint:test": "npm run lint && npm test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
+}
