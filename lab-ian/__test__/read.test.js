@@ -24,12 +24,12 @@ describe('Sample FS Model', function() {
 
     readFile.read( (data) => {
       expect([data.second, data.first, data.third]).toEqual([second2, first1, third3]);
-      console.log(readFile.read());
+      console.log(data.first, data.second, data.third)
       done()
     })
   })
 
-  test('Testing for an incorrect file path', done =>{
+  test('Testing for an incorrect file path', done => {
     let faker;
     fs.readFile(`${__dirname}/../fakefolder/fakefile.txt`, (err, data) => {
       if(err) console.error(err);
