@@ -1,47 +1,27 @@
-const bark = require('../lib/file-reader');
-const fs = require('fs');
+'use strict';
 
+const file = require('../lib/file');
 
-describe('My FS module', function() {
-  test('Should hopefully return matching data from file-read.js', done => {
-    let first1, second2, third3;
-
-    fs.readFile(`${__dirname}/../assets/one.txt`, (err, data) => {
-      if (err) console.error(err);
-      first1 = data.toString('utf-8', 0, 8);
+describe('Testing file.js', () => {
+  describe('#readThemFiles', () => {
+    test('Should return hex in correct order' , (done) => {
+      let filePaths = [
+        `${__dirname}/../assets/one.txt`,
+        `${__dirname}/../assets/two.txt`,
+        `${__dirname}/../assets/three.txt`
+      ];
+      file.readThemFiles(filePaths, (err, data) => {
+        expect(err).toBeNull();
+        expect(Array.isArray([data])).toBe(true);
+        expect(data).toEqual(['312e20284c415247','322e20284d454449','332e2028534d414c']);
+        done();
+      });
     });
-
-    fs.readFile(`${__dirname}/../assets/two.txt`, (err, data) => {
-      if (err) console.error(err);
-      second2 = data.toString('utf-8', 0, 8);
+    test('Should return an error', (done) => {
+      file.readThemFiles(`${__dirname}/../assets/four.txt`, (err) => {
+        expect(err).toEqual('ERROR');
+        done();
+      });
     });
-
-    fs.readFile(`${__dirname}/../assets/three.txt`, (err, data) => {
-      if (err) console.error(err);
-      third3 = data.toString('utf-8', 0, 8);
-    });
-
-
-    bark.read( (data) => {
-      // let odata = [data.first , data.second, data.third];
-      // let ndata = [second2, first1, third3];
-      // expect(odata).toEqual(ndata);
-
-      //**********Both methods work
-
-      expect([data.second, data.first, data.third]).toEqual([second2, first1, third3]);
-      console.log(data.first, data.second, data.third);
-      done();
-    });
-  });
-  test('Should come back undefined', done =>{
-    let nope;
-    fs.readFile(`${__dirname}/../assets/nope.txt`, (err, data) => {
-      if(err) console.error(err);
-      nope = data.toString('hex', 0, 8);
-    });
-    expect(nope).toBeUndefined();
-    done();
-
   });
 });

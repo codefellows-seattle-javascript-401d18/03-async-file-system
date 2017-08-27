@@ -1,32 +1,24 @@
-'use-strict';
-
-const fileRead = module.exports = {};
-
+'use strict';
 
 const fs = require('fs');
+const readFile = module.exports = {};
 
-console.log(`current dir: ${__dirname}`);
+readFile.readThemFiles = (filePaths, callback) => {
+  let arrBuffer = [];
 
+  fs.readFile(filePaths[0], (err, data) => {
+    if(err) return callback('ERROR');
+    arrBuffer.push(data.toString('hex', 0, 8));
 
-fileRead.read = (callback) => {
-  let first, second, third;
+    fs.readFile(filePaths[1], (err, data) => {
+      if(err) return callback('ERROR');
+      arrBuffer.push(data.toString('hex', 0, 8));
 
-  fs.readFile(`${__dirname}/../assets/one.txt`,(err, data) => {
-    if (err) callback(console.error(err));
-    first = data.toString('utf-8', 0, 8);
+      fs.readFile(filePaths[2], (err, data) => {
+        if(err) return callback('ERROR');
 
-    fs.readFile(`${__dirname}/../assets/two.txt`, (err, data) => {
-      if(err) callback(console.error(err));
-      second = data.toString('utf-8', 0, 8);
-
-
-      fs.readFile(`${__dirname}/../assets/three.txt`, (err, data) => {
-        if(err) callback(console.error(err));
-        third = data.toString('utf-8', 0, 8);
-
-
-
-        callback({first, second, third});
+        arrBuffer.push(data.toString('hex', 0, 8));
+        return callback(null, arrBuffer);
       });
     });
   });
