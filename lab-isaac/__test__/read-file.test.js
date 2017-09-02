@@ -33,16 +33,14 @@ describe('My FS module', function() {
       done();
     });
   });
-});
+  test('Testing for improper file path:', done => {
+    let badpath;
 
-test('Testing for improper file path:', done => {
-  let badpath;
-
-  fs.readFile(`${__dirname}/../assets/four.txt`, (err, data) => {
-    if(err) console.error(err);
-    badpath = data.toString('hex', 0, 8);
-
+    fs.readFile(`${__dirname}/../assets/four.txt`, (err, data) => {
+      if(err) console.error(err.code);
+      else console.log(data);
+      expect(badpath).toBeUndefined();
+      done();
+    });
   });
-  expect(badpath).toBeUndefined();
-  done();
 });
