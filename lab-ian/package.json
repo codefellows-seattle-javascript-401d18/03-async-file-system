@@ -24,7 +24,9 @@
 
   "scripts": {
     "test": "jest --verbose",
-    "lint": "eslint ."
+    "test:watch": "jest --watchAll",
+    "lint": "elint .",
+    "lint:test": "npm run lint && npm test"
   },
 
   "repository": {
